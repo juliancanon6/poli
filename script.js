@@ -37,6 +37,7 @@ var c=0;
 		var orden="";
 		var aux=texto;
 		
+		
 		for(var l = 0; l < clave.length; l++){
 			for(var k = 0; k < texto.length; k++){
 				aux(clave(l))=texto(k);
