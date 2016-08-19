@@ -34,21 +34,19 @@ var c=0;
 		var text_cifrado="";
 		var ban=0, ban1=0;
 		var clave_num=0;
+		var orden="";
+		var aux=texto;
+		
+		for(var l = 0; l < clave.length; l++){
+			for(var k = 0; k < texto.length; k++){
+				aux(clave(l))=texto(k);
+			}
+		}
+				
+		
 		
 		for (var i = 0; i < texto.length; i++){
 			for(var j = 0; j < alfabeto.length; j++){
-				for(var k = 0; k < alfabeto.length; k++){
-					if(clave.charAt(m)==alfabeto[k]){
-						clave_num = k;
-						//alert(clave_num);
-						console.log(clave_num);	
-						ban1=1;		
-					}else{
-						if(k==85 && ban1==0)
-							clave_num=0;
-					}
-				}
-				
 				if(texto.charAt(i)==alfabeto[j]){
 					console.log(j);
 					c=(j-clave_num)%n;
