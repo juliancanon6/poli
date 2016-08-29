@@ -9,7 +9,9 @@ function inicio()
 	function codifica(descifrar)
 	{
 		var NumeroText  = nom_div("caja_2").value;
-		var clave =NumeroText;
+		var clave = Number(NumeroText);
+		var NumeroText  = nom_div("caja_3").value;
+		var cesar = NumeroText;
 		var texto = nom_div("caja_1").value;
 		if (NumeroText < 0 )
 		{
@@ -35,41 +37,69 @@ var c=0;
 		var ban=0, ban1=0;
 		var clave_num=0;
 		var orden="";
+		var k=0;
+		var aux=[];	
+		var pos=0;
+		var nc=Number(cesar.length);
+		var nnc=Number(cesar.length);
+		var a="";
+		var cesarvec= new Array();
+		var l=0;
 		
 		
-		for (var i = 0; i < texto.length; i++){
+		for(l = 0; l < texto.length; l++){
+			if(l<nc){
+				cesarvec[l]=cesar[l];
+				console.log("cv",cesarvec);
+			}else{
+				a=Number(cesar[k])+Number(nc);
+				cesarvec[l]=String(a);
+				k=k+1;	
+				if(k==nnc){
+					k=0;
+					nc=nc+nnc;
+				}
+				console.log("a",a);
+			}
+			
+		}
+		console.log("c",cesarvec);
+
+		for(var l = 0; l < texto.length; l++){
+			aux[l]=texto.charAt(cesarvec[l]);
+		}
+		
+		texto=aux;
+		console.log("tx",texto);
+
+		for (var i = 0; i < texto.length; i++) {
 			for(var j = 0; j < alfabeto.length; j++){
-				if(texto.charAt(i)==alfabeto[j]){
-					console.log(j);
-					c=(j-clave_num)%n;
-					if(c<0){
-						c=c+86;
-					}
-					console.log(c);
-					text_cifrado += alfabeto[c];
-					ban=1;
+				
+			if(texto[i]==alfabeto[j]){
+				c=(j-clave)%n;
+				//console.log("j",j);
+				//console.log("clave",clave);
+				//console.log("c",c);
+				//console.log("n",n);
+				text_cifrado += alfabeto[c];
+				ban=1;
 				}
 			}
-			clave_num=0;
-			if(ban==0){
-				text_cifrado += texto.charAt(i);
-			}
-			ban=0;
-			c=0;
-			m=m+1;
-			if(clave.length==m){
-				m=0;
-			}
+				if(ban==0){
+					text_cifrado += texto[i];
+				}
+				ban=0;
 		}
+
 		nom_div("tabla").innerHTML = text_cifrado;
 		}
 		else{
 		
-		nom_div("tabla").innerHTML = realizaCesar(texto, clave);
+		nom_div("tabla").innerHTML = realizaCesar(texto, clave, cesar);
 		}
 	}
 	
-	function realizaCesar(texto, clave)
+	function realizaCesar(texto, clave, cesar)
 	{
 		
 		 
@@ -83,55 +113,66 @@ var c=0;
 					  "ñ","o","p","q","r","s","t","u","v","w",
 					  "x","y","z","@",'"',"'"];
 					  
-		var c=0;
+		var c=0, k=0;
 		var m=0;
 		var n=86;
 		var text_cifrado="";
-		var ban=0, ban1=0;
+		var ban=0, ban1=0, ban2=0;
 		var clave_num=0;
-		var aux=texto;
+		var aux=[];	
+		var pos=0;
+		var hjs=0;
+		var nc=Number(cesar.length);
+		var nnc=Number(cesar.length);
+		var a="";
+		var cesarvec= new Array();
+		var l=0;
 		
 		
-		for(var l = 0; l < clave.length; l++){
-			for(var k = 0; k < texto.length; k++){
-				aux(clave(l))=texto(k);
+		for(l = 0; l < texto.length; l++){
+			if(l<nc){
+				cesarvec[l]=cesar[l];
+				console.log("cv",cesarvec);
+			}else{
+				a=Number(cesar[k])+Number(nc);
+				cesarvec[l]=String(a);
+				k=k+1;	
+				if(k==nnc){
+					k=0;
+					nc=nc+nnc;
+				}
+				console.log("a",a);
 			}
-		}
 			
+		}
+		console.log("c",cesarvec);
+
+		for(var l = 0; l < texto.length; l++){
+			aux[l]=texto.charAt(cesarvec[l]);
+		}
 		
-		/*for (var i = 0; i < texto.length; i++){
+		texto=aux;
+		console.log("tx",texto);
+		
+		for (var i = 0; i < texto.length; i++) {
 			for(var j = 0; j < alfabeto.length; j++){
-				for(var k = 0; k < alfabeto.length; k++){
-					if(clave.charAt(m)==alfabeto[k]){
-						clave_num = k;
-						//alert(clave_num);
-						console.log(clave_num);	
-						ban1=1;		
-					}else{
-						if(k==85 && ban1==0)
-							clave_num=0;
-					}
-				}
 				
-				if(texto.charAt(i)==alfabeto[j]){
-					console.log(j);
-					c=(j+clave_num)%n;
-					console.log(c);
-					text_cifrado += alfabeto[c];
-					ban=1;
+			if(texto[i]==alfabeto[j]){
+				c=(j+clave)%n;
+				//console.log("j",j);
+				//console.log("clave",clave);
+				//console.log("c",c);
+				//console.log("n",n);
+				text_cifrado += alfabeto[c];
+				ban=1;
 				}
 			}
-			clave_num=0;
 			if(ban==0){
-				text_cifrado += texto.charAt(i);
+				text_cifrado += texto[i];
 			}
 			ban=0;
-			m=m+1;
-			if(clave.length==m){
-				m=0;
-			}
-		}*/
-		return aux;
+		}
+		return text_cifrado;
 		
 	}
 
@@ -160,4 +201,3 @@ var c=0;
 	}
 
 }
- 
