@@ -41,36 +41,34 @@ var c=0;
 		var aux=[];	
 		var pos=0;
 		var nc=Number(cesar.length);
-		var nnc=Number(cesar.length);
-		var a="";
-		var cesarvec= new Array();
-		var l=0;
 		
-		
-		for(l = 0; l < texto.length; l++){
-			if(l<nc){
-				cesarvec[l]=cesar[l];
-				console.log("cv",cesarvec);
-			}else{
-				a=Number(cesar[k])+Number(nc);
-				cesarvec[l]=String(a);
-				k=k+1;	
-				if(k==nnc){
-					k=0;
-					nc=nc+nnc;
-				}
-				console.log("a",a);
-			}
-			
-		}
-		console.log("c",cesarvec);
 
-		for(var l = 0; l < texto.length; l++){
-			aux[l]=texto.charAt(cesarvec[l]);
+		for(var l = nc; l < texto.length; l++){
+			cesar+=Number(cesar[k])+Number(nc);
+			k=k+1;	
+			if(k==nc)
+			k=0;		
+		}
+		console.log("c",cesar);
+
+
+		for(var l = 0; l < texto.length; l++){		
+		//for(var l = 0; l < cesar.length; l++){
+			//for(var k = 0; k < texto.length; k++){
+			aux[cesar[pos]]=texto.charAt(l);
+			pos=pos+1;
+			
+			if(pos>=cesar.length ){
+				console.log("pos",pos);
+				console.log("ce",cesar.length);
+				console.log("txt",aux);
+				pos=pos+cesar.length;
+			}
 		}
 		
 		texto=aux;
 		console.log("tx",texto);
+
 
 		for (var i = 0; i < texto.length; i++) {
 			for(var j = 0; j < alfabeto.length; j++){
@@ -124,31 +122,24 @@ var c=0;
 		var hjs=0;
 		var nc=Number(cesar.length);
 		var nnc=Number(cesar.length);
-		var a="";
-		var cesarvec= new Array();
-		var l=0;
 		
-		
-		for(l = 0; l < texto.length; l++){
-			if(l<nc){
-				cesarvec[l]=cesar[l];
-				console.log("cv",cesarvec);
-			}else{
-				a=Number(cesar[k])+Number(nc);
-				cesarvec[l]=String(a);
-				k=k+1;	
-				if(k==nnc){
-					k=0;
-					nc=nc+nnc;
-				}
-				console.log("a",a);
-			}
-			
-		}
-		console.log("c",cesarvec);
 
-		for(var l = 0; l < texto.length; l++){
-			aux[l]=texto.charAt(cesarvec[l]);
+		for(var l = nc; l < texto.length; l++){
+			cesar+=Number(cesar[k])+Number(nc);
+			k=k+1;	
+			if(k==nnc){
+				k=0;
+				nc=nc+nnc;
+			}
+			console.log("k",k);
+		}
+		console.log("c",cesar);
+
+		for(var l = 0; l < texto.length; l++){		
+		//for(var l = 0; l < cesar.length; l++){
+			//for(var k = 0; k < texto.length; k++){
+			aux[l]=texto.charAt(cesar[l]);
+						
 		}
 		
 		texto=aux;
@@ -167,10 +158,10 @@ var c=0;
 				ban=1;
 				}
 			}
-			if(ban==0){
-				text_cifrado += texto[i];
-			}
-			ban=0;
+				if(ban==0){
+					text_cifrado += texto[i];
+				}
+				ban=0;
 		}
 		return text_cifrado;
 		
